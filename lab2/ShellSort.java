@@ -1,36 +1,27 @@
-public class Sort {
-  private static void sort(int[] array, Comparator comp) {
-    for (int gap = array.length / 2; gap > 0; gap /= 2) {
-      for (int i = gap; i < array.length; i++) {
-        int val = array[i];
-        int j;
-        for (j = i; j >= gap && comp.compare(array[j - gap], val) > 0; j -= gap) {
-          array[j] = array[j - gap];
-        }
-        array[j] = val;
-      }
-    }
-  }
+package com.company;
 
-  public static void main(String[] args){
-    int[] array = {1,5,2,4,10,6,0,3,10};
-    Comparator comp = new Comparator();
-    
-    //Change your code here
-    sort(array, comp);
-        int[] arr = new int[array.length];
-        int j = array.length - 1;
+public class ShellSort {
 
-        for (int i = 0; i < array.length; i++) {
-            arr[i] = array[j];
-            j--;
+    public static void main(String[] args) {
+        int[] array = {30, 2, 10, 4, 6};
+        int length = array.length;
+
+        int step = array.length / 2;
+        while (step > 0) {
+            int i, j;
+            for (i = step; i < array.length; i++) {
+                int value = array[i];
+                for (j = i - step; (j >= 0) && (array[j] > value); j -= step)
+                    array[j + step] = array[j];
+                array[j + step] = value;
             }
-            array = arr;
-    //Change your code here
-    
-    for (int i = 0; i < array.length; i++) {
-      System.out.print(array[i] + " ");
+            step /= 2;
+        }
+
+
+        for (int i = 0; i < length; i++) {
+            System.out.print(array[i] + " ");
+        }
+        System.out.println();
     }
-  }
-  
 }
